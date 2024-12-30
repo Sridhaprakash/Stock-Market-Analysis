@@ -23,10 +23,11 @@ BUCKET_NAME = os.getenv("BUCKET_NAME", "stock-data-backup")
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
 # Alpha Vantage API base URL
-BASE_URL = "https://www.alphavantage.co/query"
+BASE_URL = "https://www.alphavantage.co"
 
 def fetch_stock_data(stock_symbol):
     """Fetch stock data for a given stock symbol from Alpha Vantage."""
+    #Intraday data refers to market data (such as price and volume) for very short time intervals, typically within the same trading day (minutes or hours).
     params = {
         "function": "TIME_SERIES_INTRADAY",
         "symbol": stock_symbol,
