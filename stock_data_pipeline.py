@@ -56,16 +56,23 @@ def publish_to_pubsub(stock_symbol, data):
     publisher = pubsub_v1.PublisherClient()
     topic_path = publisher.topic_path(GCP_PROJECT, PUBSUB_TOPIC)
     message = {"symbol": stock_symbol, "data": data}
+    try:
     publisher.publish(topic_path, json.dumps(message).encode("utf-8"))
     logging.info(f"Published data for {stock_symbol} to Pub/Sub topic {PUBSUB_TOPIC}")
+    except Exception as e:
+    logging.error(f"Failed to publish data for {stock_symbol}: {e}")
+
 
 def backup_to_gcs(stock_symbol, data):
     """Backup stock data to Google Cloud Storage."""
     storage_client = storage.Client()
     bucket = storage_client.bucket(BUCKET_NAME)
     blob = bucket.blob(f"raw_data/{stock_symbol}.json")
+    try:
     blob.upload_from_string(json.dumps(data), content_type="application/json")
     logging.info(f"Backed up data for {stock_symbol} to Cloud Storage bucket {BUCKET_NAME}")
+    except Exception as e:
+    logging.error(f"Failed to back up data for {stock_symbol}: {e}")
 
 def process_stock_data(stock_symbol):
     """Fetch, publish, and backup stock data for a given stock symbol."""
