@@ -16,7 +16,7 @@ GCP_PROJECT = os.getenv("GCP_PROJECT")
 PUBSUB_TOPIC = os.getenv("PUBSUB_TOPIC", "stock-data-topic")
 BUCKET_NAME = os.getenv("BUCKET_NAME", "stock-data-backup")
 STOCK_SYMBOLS = os.getenv("STOCK_SYMBOLS", "AAPL,GOOG,MSFT").split(",")
-PYSPARK_SCRIPT_PATH = "/path/to/stock_streaming_job.py"  # Update with the local path to your PySpark script
+PYSPARK_SCRIPT_PATH = "/path/to/stream_pubsub_to_bigquery.py"  # Update with the local path to your PySpark script
 BIGQUERY_TABLE = "gcp_project.stock.stock_data"
 
 # Logging configuration
