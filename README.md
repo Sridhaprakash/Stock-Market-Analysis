@@ -1,4 +1,5 @@
 ****Workflow Diagram****
+
 **Fetch Stock Data:**
 	Fetch stock data using Alpha Vantage API.
 	API provides intraday stock price data at 1-minute intervals.
